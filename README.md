@@ -6,13 +6,13 @@ This is a simple practice project for a game of Rock, Paper, Scissors - written 
 
 ## Installation and Launch
 
-Download [`RockPaperScissors.exe`]() and run the executable (the <i>game</i>).
+Download [`RockPaperScissors.exe`](https://github.com/ali-aboulsauood/rock-paper-scissors/blob/main/RockPaperScissors.exe) and run the executable (the <i>game</i>).
 
 ## Rules and Instructions
 
 <i>Basic instructions are provided in the game itself. The following describes the game rules and instructions in more detail.</i>
 
-<i>There is also a [demo video]() that shows how the game works</i>
+<i>There is also a [demo video](https://github.com/ali-aboulsauood/rock-paper-scissors/blob/main/RockPaperScissor_v0.1Demo.mp4) that shows how the game works</i>
 
 1. Enter the number of <i><dfn>rounds</dfn></i> you wish to play, then press `Enter` to confirm.
 2. In each round, enter the number corresponding to the item you wish to use (<b><i>Rock</i></b>, <b><i>Paper</i></b>, or <b><i>Scissors</i></b>), then press `Enter` to confirm.
