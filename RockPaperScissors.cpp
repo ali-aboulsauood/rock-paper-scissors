@@ -1,23 +1,3 @@
-/*
-Algorithms and Problem Solving - Level 2
-Project #1 - Rock, Paper, Scissor
-*/
-
-// Project Requirements
-/*
-(1) The user (henceforth referred to as the player) shall be prompted to enter the number of rounds after which the game ends and the results are concluded. The number of rounds can be any positive integer.
-(2) Each round should start with the player making their choice, followed by the computer making its choice (via picking a random choice).
-(3) Each round should end with the choices of both the player and the computer, as well as the result of the round printed on the screen.
-	(3 - A) If the player loses the round, the screen shall have a red color and a bell sound shall be produced.
-	(3 - B) If the player wins the round, the screen shall have a green color.
-(4) After the game finishes, the program should:
-	(4 - 1) Print a "Game Over" message.
-	(4 - 2) Print the number of rounds in which the player has won, lost or was at a draw against the computer.
-	(3 - 3) Prompt the user to enter whether or not they wish to play again.
-
-Refer to https://programmingadvices.com/courses/00316b1111/lectures/41056825.
-*/
-
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
