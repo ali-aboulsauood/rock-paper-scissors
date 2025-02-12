@@ -2,6 +2,8 @@
 
 const NUMBER_OF_CHOICES = 3;
 
+let computerScore = 0, humanScore = 0;
+
 // TODO: Use arrays to improve the program.
 
 function getComputerChoice() {
