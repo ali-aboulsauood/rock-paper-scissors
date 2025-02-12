@@ -29,7 +29,7 @@ function getHumanChoice() {
 
     // TODO: Add an option to fill the textbox with a random choice chosen by the computer for the player.
 
-    let humanChoice = prompt(message + '\n' + hint);
+    let humanChoice = prompt(message + '\n\n' + hint + '\n');
 
     let humanChoice_ = String(humanChoice).toLowerCase();
 
