@@ -11,18 +11,7 @@ function getComputerChoice() {
 
     let computerChoice = parseInt(Math.random() * NUMBER_OF_CHOICES + 1);
 
-    switch (computerChoice) {
-        case 1:
-            return "Rock";
-        case 2:
-            return "Paper";
-        case 3:
-            return "Scissors";
-
-        // Execution can never reach the default case. Added for completeness.
-        default:
-            return "";
-    }
+    return computerChoice;
 }
 
 function getHumanChoice() {
@@ -38,15 +27,15 @@ function getHumanChoice() {
     switch (humanChoice_) {
         case '1':
         case "rock":
-            return "Rock";
+            return 1;
 
         case '2':
         case "paper":
-            return "Paper";
+            return 2;
 
         case '3':
         case "scissors":
-            return "Scissors";
+            return 3;
 
         default:
             alert("You have entered an invalid choice. Please try again.");
