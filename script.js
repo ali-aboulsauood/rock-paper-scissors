@@ -2,7 +2,7 @@
 
 const NUMBER_OF_CHOICES = 3;
 
-let computerScore = 0, humanScore = 0;
+let humanScore = 0, computerScore = 0;
 
 // TODO: Use arrays to improve the program.
 
