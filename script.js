@@ -2,8 +2,6 @@
 
 const NUMBER_OF_CHOICES = 3;
 
-// TODO: Use arrays to improve the program.
-
 function getComputerChoice() {
     // refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_number_between_two_values for more information about how the following statement works.
 
@@ -15,8 +13,6 @@ function getComputerChoice() {
 function getHumanChoice() {
     const message = "Please enter your choice in the textbox below:"
     const hint = "Enter '1' or 'Rock' for Rock, '2' or 'Paper' for Paper, '3' or 'Scissors' for Scissors. Inputs are case-insensitive."
-
-    // TODO: Add an option to fill the textbox with a random choice chosen by the computer for the player.
 
     let humanChoice = prompt(message + '\n\n' + hint + '\n');
 
@@ -38,7 +34,6 @@ function getHumanChoice() {
         default:
             alert("You have entered an invalid choice. Please try again.");
 
-            // TODO: Use a safer implementation than recursion.
             return getHumanChoice();
     }
 }
