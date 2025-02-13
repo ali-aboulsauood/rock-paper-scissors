@@ -44,7 +44,9 @@ function getHumanChoice() {
 }
 
 function playGame() {
-    let humanScore = 0, computerScore = 0;
+    let humanScore = 0, computerScore = 0, playAgain = true;
+
+    const DEFAULT_NUMBER_OF_ROUNDS = 5;
     
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
         function nameOf(choice) {
@@ -126,4 +128,78 @@ function playGame() {
     
         alert(result);
     }
+
+    alert("Welcome to Rock, Paper, Scissors! Press OK (Enter/RETURN) to start the game!");
+
+    do {
+        humanScore = computerScore = 0;
+
+        let numberOfRounds = null, isNumberOfRoundsNaN = true;
+    
+        function promptForNumberOfRounds() {
+            const promptMessage = "Please enter the number of rounds you wish to play:"
+            do {
+    
+                numberOfRounds = parseInt(prompt(promptMessage, '5'));
+    
+                isNumberOfRoundsNaN = isNaN(numberOfRounds);
+    
+                if (isNumberOfRoundsNaN) {
+                    alert("You have entered an invalid number. Please try again.");
+                }
+    
+            } while (isNumberOfRoundsNaN);
+        }
+
+        promptForNumberOfRounds();
+
+        for (let i = 1; i <= numberOfRounds; i++) {
+            playRound();
+        }
+
+        function gameResult() {
+            if (humanScore === computerScore) {
+                return 2;
+            }
+            
+            return (humanScore > computerScore);
+        }
+
+        function humanStatus() {
+            if (gameResult() === 2) {
+                return "came at a draw with the computer...";
+            }
+    
+            return gameResult() ? "win!" : "lose!";
+        }
+
+        function toPercentage(score, numberOfDecimalPlaces = 2) {
+            if (numberOfDecimalPlaces < 0) {
+                numberOfDecimalPlaces = 0;
+            } else if (numberOfDecimalPlaces > 20) {
+                numberOfDecimalPlaces = 20;
+            }
+
+            return ((score / DEFAULT_NUMBER_OF_ROUNDS).toFixed(numberOfDecimalPlaces) * 100) + '%';
+        }
+
+        const result = 
+        `
+        You ${humanStatus()};
+
+        Your Score: ${humanScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(humanScore)});
+        Computer Score: ${computerScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(computerScore)});
+
+        You can copy these statistics from the console (press F12).
+
+        Do you wish to play again?
+        `
+
+        playAgain = confirm(result);
+
+    } while (playAgain);
 }
+
+// Starts the game
+
+playGame();
