@@ -44,3 +44,84 @@ function getHumanChoice() {
             return getHumanChoice();
     }
 }
+
+function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
+    function nameOf(choice) {
+        switch (choice) {
+            case 1:
+                return "Rock";
+            case 2:
+                return "Paper";
+            case 3:
+                return "Scissors"
+
+            default:
+                throw Error("Argument does not represent a valid choice.");
+        }
+    }
+
+    const nameOfHumanChoice = nameOf(humanChoice), nameOfComputerChoice = nameOf(computerChoice);
+
+    function roundResult(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            return 2;
+        }
+
+        if (humanChoice < computerChoice) {
+            return (humanChoice === 1 && computerChoice === 3) ? 1 : 0;
+        } else {
+            return (humanChoice === 3 && computerChoice === 1) ? 0 : 1;
+        }
+    }
+
+    const roundResult_ = roundResult(humanChoice, computerChoice);
+
+    if (roundResult_ !== 2) {
+        roundResult_ ? humanScore++ : computerScore++;
+    }
+
+    let winningChoice = null, losingChoice = null;
+    assignChoices();
+
+    function assignChoices() {
+        if (roundResult_ === 2) {
+            return;
+        }
+
+        if (roundResult_) {
+            winningChoice = nameOfHumanChoice;
+            losingChoice = nameOfComputerChoice;
+        } else {
+            winningChoice = nameOfComputerChoice;
+            losingChoice = nameOfHumanChoice;
+        }
+    }
+
+    function humanStatus() {
+        if (roundResult_ === 2) {
+            return "are at a draw with the computer...";
+        }
+
+        return roundResult_ ? "win!" : "lose!";
+    }
+
+    let result = 
+    `
+    You have chosen ${nameOfHumanChoice}.
+    The computer has chosen ${nameOfComputerChoice}.
+
+    You ${humanStatus()}`;
+
+    if (roundResult_ !== 2) {
+        result += ' ' + `${winningChoice} beats ${losingChoice}!`
+    }
+
+    result += 
+    `
+
+    Your Score: ${humanScore} points.
+    Computer Score: ${computerScore} points.
+    `
+
+    alert(result);
+}
