@@ -185,8 +185,6 @@ function playGame() {
         Your Score: ${humanScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(humanScore)});
         Computer Score: ${computerScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(computerScore)});
 
-        You can copy these statistics from the console (press F12).
-
         Do you wish to play again?
         `
 
