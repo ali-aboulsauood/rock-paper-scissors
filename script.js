@@ -180,10 +180,10 @@ function playGame() {
 
         const result = 
         `
-        You ${humanStatus()};
+        You ${humanStatus()}!
 
-        Your Score: ${humanScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(humanScore)});
-        Computer Score: ${computerScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(computerScore)});
+        Your Score: ${humanScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(humanScore)})!
+        Computer Score: ${computerScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(computerScore)})!
 
         Do you wish to play again?
         `
