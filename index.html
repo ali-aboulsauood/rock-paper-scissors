@@ -1,20 +1,82 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
     <head>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Rock, Paper, Scissors!</title>
+        <title>Rock, Paper, Scissors! | Ali Aboul-Sauood</title>
 
+        <link rel="stylesheet" href="style.css">
+
+        <script src="script.js"></script>
     </head>
 
     <body>
+        <div class="game">
+            <div class="head">
+                <h1 class="title"><span class="rock">👊 Rock</span> <span class="paper">✋ Paper</span> <span class="scissors">✌️ Scissors</span></h1>
+                <h2 class="subtitle"><span class=highlight>Make your choice</span> - First to score <span class="highlight">five points</span> wins the game!</h2>
+            </div>
 
-        <script src="script.js"></script>
-        
+            <div class="body">
+                <div class="round-title">Round <span class="highlight">1</span></div>
+
+                <hr>
+    
+                <div class="choices">
+                    <div class="choice-container rock">
+                        <button class="button choice rock">
+                            <div class="icon">👊</div>
+                            <div class="text">Rock</div>
+                        </button>
+
+                        <div class="kb-prompt">Press <span class="kb-button rock">1</span> or <span class="kb-button rock">R</span></div>
+                    </div>
+
+                    <div class="choice-container paper">
+                        <button class="button choice paper">
+                            <div class="icon">✋</div>
+                            <div class="text">Paper</div>
+                        </button>
+
+                        <div class="kb-prompt">Press <span class="kb-button paper">2</span> or <span class="kb-button paper">P</span></div>
+                    </div>
+                    
+                    <div class="choice-container scissors">
+                        <button class="button choice scissors">
+                            <div class="icon">✌️</div> 
+                            <div class="text">Scissors</div>
+                        </button>
+
+                        <div class="kb-prompt">Press <span class="kb-button scissors">3</span> or <span class="kb-button scissors">S</span></div>
+                    </div>
+                </div>
+    
+                <div class="stats">
+                    <div class="human-stats">
+                        <div class="name">Human</div>
+                        <div class="choice">-</div>
+                    </div>
+
+                    <div class="game-stats">
+                        <div class="scores">
+                            <div class="human-score">0</div>
+                            <div class="divider">-</div>
+                            <div class="computer-score">0</div>
+                        </div>
+
+                        <div class="game-result"></div>
+                    </div>
+    
+                    <div class="computer-stats">
+                        <div class="name">Computer</div>
+                        <div class="choice">-</div>
+                    </div>
+                </div>
+
+                <button class="button restart">↷ Restart</button>
+            </div>    
+        </div>
     </body>
-
 </html>
