@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+* {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 450;
+    font-style: normal;
+}
+
+html, .game, .head, .body, .choices, .choice-container, .choice, .human-stats, .computer-stats {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+html {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+
+    height: 100vh;
+}
+
+.rock {
+    color: red;
+}
+
+.paper {
+    color: yellow;
+}
+
+.scissors {
+    color: green;
+}
+
+.highlight, hr {
+    color: goldenrod;
+}
+
+hr {
+    width: 50%;
+}
+
+.game, .body, .button, .choice, .choice-container, .stats, .restart {
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.game, .body {
+    gap: 16px;
+}
+
+.game, .body, .stats {
+    border-color: goldenrod;
+}
+
+.button, .choice {
+    border-style: none;
+}
+
+.game {
+    width: 55vw;
+    height: 90vh;
+
+    border-width: 4px;
+    border-style: solid;
+
+    padding: 32px;
+}
+
+.body {
+    border-width: 2px;
+    border-style: dashed;
+    
+    padding: 32px;
+}
+
+.round-title {
+    font-size: 24px;
+}
+
+.choices {
+    flex-direction: row;
+
+    gap: 16px;
+
+    margin-top: 8px;
+}
+
+.choice-container {
+    gap: 16px;
+}
+
+.choice-container, .stats {
+    padding: 16px;
+
+    border-width: 2px;
+    border-style: solid;
+}
+
+.choice-container.rock {
+    border-color: red;
+}
+
+.choice-container.paper {
+    border-color: yellow;
+}
+
+.choice-container.scissors {
+    border-color: green;
+}
+
+.choice {
+    gap: 4px;
+
+    flex: 1 1 auto;
+
+    background-color: grey;
+
+    width: 150px;
+    height: 150px;
+}
+
+.choice.rock, .kb-button.rock {
+    background-color: rgb(255, 0, 0, 0.2);      /* Red, with 20% opacity */
+}
+
+.choice.paper, .kb-button.paper {
+    background-color: rgb(255, 255, 0, 0.2);    /* Yellow, with 20% opacity */
+}
+
+.choice.scissors, .kb-button.scissors {
+    background-color: rgb(0, 128, 0, 0.2);      /* Green, with 20% opacity */
+}
+
+.kb-prompt {
+    text-align: center;
+}
+
+.icon {
+    font-size: 64px;
+}
+
+.kb-button {
+    padding: 4px;
+
+    border-width: 0.5px;
+    border-style: solid;
+
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+.stats, .scores {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats {
+    width: 95%;
+
+    margin-top: 16px;
+}
+
+.human-stats, .computer-stats {
+    gap: 8px;
+}
+
+.scores {
+    font-size: 48px;
+
+    gap: 24px;
+
+    width: 100%;
+}
+
+.game-result {
+    font-size: 64px;
+}
+
+.restart {
+    font-size: 24px;
+    background-color: rgb(218, 165, 32, 0.2);
+    color: goldenrod;
+
+    margin-top: 16px;
+
+    padding: 16px;
+}
