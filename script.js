@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const humanChoiceDiv = document.querySelector('.human-stats .choice');
                 const computerChoiceDiv = document.querySelector('.computer-stats .choice');
 
-                const selectedHumanChoice = document.querySelector(`.button.choice.${nameOf(humanChoice)}`);
-                const selectedComputerChoice = document.querySelector(`.button.choice.${nameOf(computerChoice)}`);
+                const selectedHumanChoice = document.querySelector(`.button.choice.${nameOf(humanChoice)}`).cloneNode(true);
+                const selectedComputerChoice = document.querySelector(`.button.choice.${nameOf(computerChoice)}`).cloneNode(true);
 
-                humanChoiceDiv.replaceWith(selectedHumanChoice.cloneNode(true));
-                computerChoiceDiv.replaceWith(selectedComputerChoice.cloneNode(true));
+                selectedHumanChoice.setAttribute("disabled", "");
+                selectedHumanChoice.setAttribute("disabled", "");
 
-                humanChoiceDiv.setAttribute("disabled", "");
-                computerChoiceDiv.setAttribute("disabled", "");
+                humanChoiceDiv.replaceWith(selectedHumanChoice);
+                computerChoiceDiv.replaceWith(selectedComputerChoice);
             }
 
             function displayRoundResults() {
