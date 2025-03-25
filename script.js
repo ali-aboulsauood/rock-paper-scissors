@@ -1,198 +1,187 @@
 'use strict'
 
-const NUMBER_OF_CHOICES = 3;
+document.addEventListener('DOMContentLoaded', () => {
+    const NUMBER_OF_CHOICES = 3;
 
-function getComputerChoice() {
-    // refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_number_between_two_values for more information about how the following statement works.
+    let humanScore = 0, computerScore = 0;
+    let roundNumber = 1;
 
-    let computerChoice = parseInt(Math.random() * NUMBER_OF_CHOICES + 1);
+    const DEFAULT_WINNING_SCORE = 5;
+    function playRound(humanChoice) {
+        function getComputerChoice() {
+            let computerChoice = parseInt(Math.random() * NUMBER_OF_CHOICES + 1);
 
-    return computerChoice;
-}
+            return computerChoice;
+        }
 
-function getHumanChoice() {
-    const message = "Please enter your choice in the textbox below:"
-    const hint = "Enter '1' or 'Rock' for Rock, '2' or 'Paper' for Paper, '3' or 'Scissors' for Scissors. Inputs are case-insensitive."
-
-    let humanChoice = prompt(message + '\n\n' + hint + '\n');
-
-    let humanChoice_ = String(humanChoice).toLowerCase();
-
-    switch (humanChoice_) {
-        case '1':
-        case "rock":
-            return 1;
-
-        case '2':
-        case "paper":
-            return 2;
-
-        case '3':
-        case "scissors":
-            return 3;
-
-        default:
-            alert("You have entered an invalid choice. Please try again.");
-
-            return getHumanChoice();
-    }
-}
-
-function playGame() {
-    let humanScore = 0, computerScore = 0, playAgain = true;
-
-    const DEFAULT_NUMBER_OF_ROUNDS = 5;
-    
-    function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
+        let computerChoice = getComputerChoice();
+        
         function nameOf(choice) {
             switch (choice) {
-                case 1:
-                    return "Rock";
-                case 2:
-                    return "Paper";
-                case 3:
-                    return "Scissors"
-    
-                default:
-                    throw Error("Argument does not represent a valid choice.");
+                case 1: return 'rock';
+                case 2: return 'paper';
+                case 3: return 'scissors';
+                
+                default: return null;
             }
         }
-    
-        const nameOfHumanChoice = nameOf(humanChoice), nameOfComputerChoice = nameOf(computerChoice);
-    
+
         function roundResult(humanChoice, computerChoice) {
             if (humanChoice === computerChoice) {
                 return 2;
             }
-    
+
             if (humanChoice < computerChoice) {
                 return (humanChoice === 1 && computerChoice === 3) ? 1 : 0;
             } else {
                 return (humanChoice === 3 && computerChoice === 1) ? 0 : 1;
             }
         }
-    
+
         const roundResult_ = roundResult(humanChoice, computerChoice);
-    
-        if (roundResult_ !== 2) {
-            roundResult_ ? humanScore++ : computerScore++;
-        }
-    
-        let winningChoice = null, losingChoice = null;
-        assignChoices();
-    
-        function assignChoices() {
-            if (roundResult_ === 2) {
-                return;
-            }
-    
-            if (roundResult_) {
-                winningChoice = nameOfHumanChoice;
-                losingChoice = nameOfComputerChoice;
-            } else {
-                winningChoice = nameOfComputerChoice;
-                losingChoice = nameOfHumanChoice;
+
+        function setScores() {
+            if (roundResult_ !== 2) {
+                roundResult_ ? humanScore++ : computerScore++;
             }
         }
-    
-        function humanStatus() {
-            if (roundResult_ === 2) {
-                return "are at a draw with the computer...";
+
+        setScores();
+
+        function displayRoundStats() {
+            function displaySelectedChoices() {
+                const humanChoiceDiv = document.querySelector('.human-stats .choice');
+                const computerChoiceDiv = document.querySelector('.computer-stats .choice');
+
+                const selectedHumanChoice = document.querySelector(`.button.choice.${nameOf(humanChoice)}`);
+                const selectedComputerChoice = document.querySelector(`.button.choice.${nameOf(computerChoice)}`);
+
+                humanChoiceDiv.replaceWith(selectedHumanChoice.cloneNode(true));
+                computerChoiceDiv.replaceWith(selectedComputerChoice.cloneNode(true));
+
+                humanChoiceDiv.setAttribute("disabled", "");
+                computerChoiceDiv.setAttribute("disabled", "");
             }
+
+            function displayRoundResults() {
+                const humanScoreDiv = document.querySelector('.human-score');
+                const computerScoreDiv = document.querySelector('.computer-score');
+
+                humanScoreDiv.textContent = humanScore;
+                computerScoreDiv.textContent = computerScore;
+            }
+
+
+            function displayHumanStatus() {
+                const winColor = "rgb(0, 255, 0)", loseColor = "rgb(255, 0, 0)", drawColor = "rgb(255, 255, 255)";
+                const colors = [loseColor, winColor, drawColor];
+
+                function setColors() {
+                    const bodyDiv = document.querySelector('.body');
+                    const gameStatsDiv = document.querySelector('.stats');
     
-            return roundResult_ ? "win!" : "lose!";
+                    const color = colors.at(roundResult_);
+    
+                    bodyDiv.style.borderColor = gameStatsDiv.style.borderColor = color;
+                }
+
+                const roundPossibilities = ["Round lost!", "Round won!", "Draw..."];
+                const gamePossibilities = ["Game lost!", "Game won!"];
+
+                const humanStatusDiv = document.querySelector('.game-result');
+
+                const possibilities = isGameOver() ? gamePossibilities : roundPossibilities;
+
+                humanStatusDiv.textContent = possibilities.at(roundResult_);
+                humanStatusDiv.style.color = colors.at(roundResult_);
+            }
+
+            displaySelectedChoices();
+            displayRoundResults();
+            displayHumanStatus();
         }
-    
-        let result = 
-        `
-        You have chosen ${nameOfHumanChoice}.
-        The computer has chosen ${nameOfComputerChoice}.
-    
-        You ${humanStatus()}`;
-    
-        if (roundResult_ !== 2) {
-            result += ' ' + `${winningChoice} beats ${losingChoice}!`
-        }
-    
-        result += 
-        `
-    
-        Your Score: ${humanScore} points.
-        Computer Score: ${computerScore} points.
-        `
-    
-        alert(result);
+
+        displayRoundStats();
+
+        roundNumber++;
+
+        const roundNumberSpan = document.querySelector('.round-title .highlight');
+        roundNumberSpan.textContent = roundNumber;
     }
 
-    alert("Welcome to Rock, Paper, Scissors! Press OK (Enter/RETURN) to start the game!");
+    function isGameOver() {
+        return humanScore === DEFAULT_WINNING_SCORE || computerScore === DEFAULT_WINNING_SCORE;
+    }
 
-    do {
-        humanScore = computerScore = 0;
+    function checkRestart() {
+        if (isGameOver()) {
+            const restart = document.querySelector('.restart');
+            restart.removeAttribute("hidden");
+        
+            restart.addEventListener('click', () => {
+                window.location.reload();
+            });
 
-        let numberOfRounds = null, isNumberOfRoundsNaN = true;
-    
-        function promptForNumberOfRounds() {
-            const promptMessage = "Please enter the number of rounds you wish to play:"
-            do {
-    
-                numberOfRounds = parseInt(prompt(promptMessage, '5'));
-    
-                isNumberOfRoundsNaN = isNaN(numberOfRounds);
-    
-                if (isNumberOfRoundsNaN) {
-                    alert("You have entered an invalid number. Please try again.");
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    window.location.reload();
                 }
-    
-            } while (isNumberOfRoundsNaN);
+            })
         }
+    }
 
-        promptForNumberOfRounds();
-
-        for (let i = 1; i <= numberOfRounds; i++) {
-            playRound();
+    window.addEventListener('beforeunload', function (e) {
+        if (!isGameOver()) {
+            e.preventDefault();
+            e.returnValue = '';
         }
+    })
 
-        function gameResult() {
-            if (humanScore === computerScore) {
+    function getHumanChoiceMouse(event) {
+        const button = event.target.closest('.button.choice');
+        
+        if (!button) return;
+
+        if (button.classList.contains('rock')) return 1;
+        if (button.classList.contains('paper')) return 2;
+        if (button.classList.contains('scissors')) return 3;
+    }
+
+    function getHumanChoiceKeyboard(event) {
+        switch (event.key) {
+            case '1':
+            case 'r':
+                return 1;
+
+            case '2':
+            case 'p':
                 return 2;
-            }
+
+            case '3':
+            case 's':
+                return 3;
             
-            return (humanScore > computerScore);
+            default: return null;
         }
+    }
 
-        function humanStatus() {
-            if (gameResult() === 2) {
-                return "came at a draw with the computer...";
-            }
-    
-            return gameResult() ? "win!" : "lose!";
+    let humanChoice = null;
+
+    const choices = document.querySelector('.choices');
+
+    choices.addEventListener('click', function (e) {
+        if (!isGameOver()) {
+            humanChoice = getHumanChoiceMouse(e);
+            playRound(humanChoice);
+            checkRestart();
         }
-
-        function toPercentage(score, numberOfDecimalPlaces = 2) {
-            if (numberOfDecimalPlaces < 0) {
-                numberOfDecimalPlaces = 0;
-            } else if (numberOfDecimalPlaces > 20) {
-                numberOfDecimalPlaces = 20;
-            }
-
-            return ((score / DEFAULT_NUMBER_OF_ROUNDS).toFixed(numberOfDecimalPlaces) * 100) + '%';
+    })
+    window.addEventListener('keydown', function (e) {
+        if (!isGameOver()) {
+            humanChoice = getHumanChoiceKeyboard(e);
+            if (humanChoice)
+                playRound(humanChoice);
+            checkRestart();
         }
-
-        const result = 
-        `
-        You ${humanStatus()}
-
-        Your Score: ${humanScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(humanScore)}).
-        Computer Score: ${computerScore} out of ${DEFAULT_NUMBER_OF_ROUNDS} (${toPercentage(computerScore)}).
-
-        Do you wish to play again?
-        `
-
-        playAgain = confirm(result);
-
-    } while (playAgain);
-}
-
-// Starts the game
-
-playGame();
+    })
+});
