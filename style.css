@@ -129,12 +129,24 @@ hr {
     background-color: rgb(255, 0, 0, 0.2);      /* Red, with 20% opacity */
 }
 
+.choice.button.rock:hover {
+    border: 2px solid red;
+}
+
 .choice.paper, .kb-button.paper {
     background-color: rgb(255, 255, 0, 0.2);    /* Yellow, with 20% opacity */
 }
 
+.choice.button.paper:hover {
+    border: 2px solid yellow;
+}
+
 .choice.scissors, .kb-button.scissors {
     background-color: rgb(0, 128, 0, 0.2);      /* Green, with 20% opacity */
+}
+
+.choice.button.scissors:hover {
+    border: 2px solid green;
 }
 
 .kb-prompt {
@@ -196,4 +208,8 @@ hr {
     margin-top: 16px;
 
     padding: 16px;
+}
+
+.restart:hover {
+    border: 2px solid goldenrod;
 }
