@@ -50,6 +50,10 @@ hr {
     -o-border-radius: 16px;
 }
 
+.head {
+    text-align: center;
+}
+
 .game, .body {
     gap: 16px;
 }
