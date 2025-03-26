@@ -54,6 +54,10 @@ hr {
     text-align: center;
 }
 
+.choices, .stats {
+    flex-wrap: wrap;
+}
+
 .game, .body {
     gap: 16px;
 }
